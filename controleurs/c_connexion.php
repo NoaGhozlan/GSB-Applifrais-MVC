@@ -1,18 +1,5 @@
 <?php
-/**
- * Gestion de la connexion
- *
- * PHP Version 7
- * 
- * @category  PPE
- * @package   GSB
- * @author    Réseau CERTA <contact@reseaucerta.org>
- * @author    José GIL <jgil@ac-nice.fr>
- * @copyright 2017 Réseau CERTA
- * @license   Réseau CERTA
- * @version   GIT: <0>
- * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
- */
+
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 if (!$uc) {
@@ -26,7 +13,7 @@ case 'demandeConnexion':
 case 'valideConnexion':
     $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);// pr dire que le fitre,appliquer filtre en string
     $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_STRING);
-    $visiteur = $pdo->getInfosVisiteur($login, $mdp);// represnete la connexion entre php et base de donnee
+    $visiteur = $pdo->getInfosVisiteur($login, $mdp);// pdo represnete la connexion entre php et base de donnee
     $comptable = $pdo->getInfosComptable($login, $mdp);// represnete la connexion entre php et base de donnee
     
     

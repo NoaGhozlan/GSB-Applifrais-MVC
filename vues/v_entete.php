@@ -1,19 +1,4 @@
-<?php
-/**
- * Vue Entête
- *
- * PHP Version 7
- *
- * @category  PPE
- * @package   GSB
- * @author    Réseau CERTA <contact@reseaucerta.org>
- * @author    José GIL <jgil@ac-nice.fr>
- * @copyright 2017 Réseau CERTA
- * @license   Réseau CERTA
- * @version   GIT: <0>
- * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
- */
-?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,7 +15,9 @@
         <div class="container">
             <?php
             $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
-            if ($estConnecte) {
+            $estVisiteurConnecte = estVisiteurConnecte();
+            $estComptableConnecte = estComptableConnecte();
+            if ($estVisiteurConnecte) {
                 ?>
             <div class="header">
                 <div class="row vertical-align">
@@ -73,7 +60,50 @@
                 </div>
             </div>
             <?php
-            } else {
+            } elseif ($estComptableConnecte) {
+               ?>
+            <div class="header">
+                <div class="row vertical-align">
+                    <div class="col-md-4">
+                        <h1>
+                            <img src="./images/logo.jpg" class="img-responsive" 
+                                 alt="Laboratoire Galaxy-Swiss Bourdin" 
+                                 title="Laboratoire Galaxy-Swiss Bourdin">
+                        </h1>
+                    </div>
+                    <div class="col-md-8">
+                        <ul class="nav nav-pills pull-right" role="tablist">
+                            <li <?php if (!$uc || $uc == 'accueil') { ?>class="active" <?php } ?>>
+                                <a href="index.php">
+                                    <span style="color: #ff8c00;"class="glyphicon glyphicon-home"></span>
+                                    <FONT color="darkorange">Accueil</FONT>
+                                </a>
+                            </li>
+                            <li <?php if ($uc == 'validerFrais') { ?>class="active"<?php } ?>>
+                                <a href="index.php?uc=validerFrais&action=valider">
+                                    <span style="color: #ff8c00;"class="glyphicon glyphicon-ok"></span>
+                                    <FONT color="darkorange">Valider les fiches de frais</FONT>
+                                </a>
+                            </li>
+                            <li <?php if ($uc == 'etatFrais') { ?>class="active"<?php } ?>>
+                                <a href="index.php?uc=etatFrais&action=selectionnerMois">
+                                    <span style="color: #ff8c00;"class="glyphicon glyphicon-euro"></span>
+                                    <FONT color="darkorange">Afficher mes fiches de frais</FONT>
+                                </a>
+                            </li>
+                            <li 
+                            <?php if ($uc == 'deconnexion') { ?>class="active"<?php } ?>>
+                                <a href="index.php?uc=deconnexion&action=demandeDeconnexion">
+                                    <span style="color: #ff8c00;"class="glyphicon glyphicon-log-out"></span>
+                                     <FONT color="darkorange">Déconnexion</FONT>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <?php 
+            }else{
                 ?>   
                 <h1>
                     <img src="./images/logo.jpg"

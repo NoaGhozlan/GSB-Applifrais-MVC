@@ -1,18 +1,5 @@
 <?php
-/**
- * Fonctions pour l'application GSB
- *
- * PHP Version 7
- *
- * @category  PPE
- * @package   GSB
- * @author    Cheri Bibi - Réseau CERTA <contact@reseaucerta.org>
- * @author    José GIL <jgil@ac-nice.fr>
- * @copyright 2017 Réseau CERTA
- * @license   Réseau CERTA
- * @version   GIT: <0>
- * @link      http://www.php.net/manual/fr/book.pdo.php PHP Data Objects sur php.net
- */
+
 
 /**
  * Teste si un quelconque utilisateur est connecté
@@ -27,9 +14,10 @@ function estConnecte()
  * Teste si un visiteur est connecté
  *
  * @return vrai ou faux
+ * 
  */
 
-function estConnecteVisiteur()
+function estVisiteurConnecte()
 {
     if (estConnecte()){
         return ($_SESSION['statut']== 'visiteur');
@@ -42,7 +30,7 @@ function estConnecteVisiteur()
  * @return vrai ou faux
  */
 
-function estConnecteComptable()
+function estComptableConnecte()
 {
     if (estConnecte()){
         return ($_SESSION['statut'] == 'comptable');
@@ -122,6 +110,30 @@ function getMois($date)
     }
     return $annee . $mois;
 }
+
+/**
+ * Fonction qui retourne le mois précédent un mois passé en paramètre
+ *
+ * @param String $mois Contient le mois à utiliser
+ *
+ * @return String le mois d'avant
+ */
+function getMoisPrecedent($mois)
+{
+    $numAnnee = substr($mois, 0, 4);
+    $numMois = substr($mois, 4, 2);
+    if ($numMois == '01') {
+        $numMois = '12';
+        $numAnnee--;
+    } else {
+        $numMois--;
+    }
+    if (strlen($numMois) == 1) {
+        $numMois = '0' . $numMois;
+    }
+    return $numAnnee . $numMois;
+}
+
 
 /* gestion des erreurs */
 
@@ -274,3 +286,25 @@ function nbErreurs()
         return count($_REQUEST['erreurs']);
     }
 }
+
+/**
+ * Retourne une liste des douzes mois précédents du mois précédent
+ * 
+ * @param $mois
+ * @return Array liste des mois
+ */
+function getLesDouzeDerniersMois($mois){
+    $lesMois= array();
+    for ($k=0;$k<=12;$k++){
+        $mois= getMoisPrecedent($mois);
+        $numAnnee = substr($mois,0,4);
+        $numMois = substr($mois,4,2);
+        $lesMois [] = array(
+            'mois'=> $mois,
+            'numAnnee'=> $numAnnee,
+            'numMois'=> $numMois
+        );
+    }
+    return $lesMois;
+}
+
