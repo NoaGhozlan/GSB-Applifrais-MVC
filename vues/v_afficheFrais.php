@@ -59,7 +59,7 @@
                     <td> <?php echo $date ?></td>
                     <td> <?php echo $libelle ?></td>
                     <td><?php echo $montant ?></td>
-                    <td><a href="index.php?uc=valider&action=validerVM=<?php echo $id ?>" 
+                    <td><a href="index.php?uc=valider&action=validerMajFraisForfait=<?php echo $id ?>" 
                            onclick="return confirm('Voulez-vous vraiment supprimer ce frais?');">Supprimer ce frais</a></td>
                 </tr>
                 <?php

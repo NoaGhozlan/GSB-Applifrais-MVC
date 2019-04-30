@@ -239,6 +239,7 @@ class PdoGsb
      */
     public function majFraisForfait($idVisiteur, $mois, $lesFrais)
     {
+        
         $lesCles = array_keys($lesFrais);
         foreach ($lesCles as $unIdFrais) {
             $qte = $lesFrais[$unIdFrais];
@@ -249,6 +250,7 @@ class PdoGsb
                 . 'AND lignefraisforfait.mois = :unMois '
                 . 'AND lignefraisforfait.idfraisforfait = :idFrais'
             );
+            
             $requetePrepare->bindParam(':uneQte', $qte, PDO::PARAM_INT);
             $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
             $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
