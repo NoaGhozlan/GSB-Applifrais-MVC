@@ -2,6 +2,7 @@
 
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
+
 if (!$uc) {
     $uc = 'demandeconnexion';
 }

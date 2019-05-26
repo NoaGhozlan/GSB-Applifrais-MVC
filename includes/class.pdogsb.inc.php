@@ -271,7 +271,7 @@ class PdoGsb
      */
     public function majNbJustificatifs($idVisiteur, $mois, $nbJustificatifs)
     {
-        $requetePrepare = PdoGB::$monPdo->prepare(
+        $requetePrepare = PdoGsB::$monPdo->prepare(
             'UPDATE fichefrais '
             . 'SET nbjustificatifs = :unNbJustificatifs '
             . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
@@ -428,6 +428,31 @@ class PdoGsb
         $requetePrepare->bindParam(':unIdFrais', $idFrais, PDO::PARAM_STR);
         $requetePrepare->execute();
     }
+    
+    /**
+     * Modifie le libelle d'un frais hors forfait pour un visiteur un mois donné
+     * à partir des informations fournies en paramètre
+     *
+     * @param String $idVisiteur ID du visiteur
+     * @param String $mois       Mois sous la forme aaaamm
+     * @param String $libelle    Libellé du frais
+     * @param String $date       Date du frais au format français jj//mm/aaaa
+     * @param Float  $montant    Montant du frais
+     *
+     * @return null
+     */
+    public function majFraisHorsForfait($id, $libelle) 
+        {
+        $requetePrepare = PdoGSB::$monPdo->prepare(
+            'UPDATE lignefraishorsforfait '
+            . 'SET libelle = :unLibelle '
+            . 'WHERE id = :unId'
+        );
+        $requetePrepare->bindParam(':unId', $id, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unLibelle', $libelle, PDO::PARAM_STR);
+        $requetePrepare->execute();
+    }
+    
 
     /**
      * Retourne les mois pour lesquel un visiteur a une fiche de frais
