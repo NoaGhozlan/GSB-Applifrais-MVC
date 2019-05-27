@@ -308,3 +308,20 @@ function getLesDouzeDerniersMois($mois){
     return $lesMois;
 }
 
+/**
+ * Retourne une liste des cinq dernieres annees, annee courante incluse
+ * 
+ * @param $anneeCourante
+ * @return Array liste des annees
+ */
+function getLesCinqDernieresAnnees ($annee){
+    $lesAnnees= array();
+$annee = $annee+1;
+    for ($k=0;$k<=4;$k++){
+        $annee=$annee-1;
+        $lesAnnees [] = array(
+            'annee'=> $annee
+        );
+    }
+    return $lesAnnees;
+}

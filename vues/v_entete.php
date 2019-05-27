@@ -88,7 +88,12 @@
                             <li <?php if ($uc == 'etatFrais') { ?>class="active"<?php } ?>>
                                 <a href="index.php?uc=etatFrais&action=selectionnerMois">
                                     <span style="color: #ff8c00;"class="glyphicon glyphicon-euro"></span>
-                                    <FONT color="darkorange">Afficher mes fiches de frais</FONT>
+                                    <FONT color="darkorange">Suivre le paiement des fiches de frais</FONT>
+                                </a>
+                            </li>
+                                <a href="index.php?uc=remboursementFrais&action=fraisRemb">
+                                    <span style="color: #ff8c00;"class="glyphicon glyphicon-euro"></span>
+                                    <FONT color="darkorange">Suivre le paiement des fiches de frais</FONT>
                                 </a>
                             </li>
                             <li 

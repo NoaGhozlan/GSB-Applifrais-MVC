@@ -27,8 +27,12 @@
                             <br>Valider les fiches de frais</a>
                         <a href="index.php?uc=validerFrais"
                            class="btn btn-primary btn-lg" role="button">
-                            <span class="glyphicon glyphicon-list-alt"></span>
-                            <br>Afficher mes fiches de frais</a>
+                            <span class="glyphicon glyphicon glyphicon-euro"></span>
+                            <br>Suivre le paiement des fiches de frais</a>
+                        <a href="index.php?uc=remboursementFrais&action=fraisRemb"
+                           class="btn btn-primary btn-lg" role="button">
+                            <span class="glyphicon glyphicon glyphicon-euro"></span>
+                            <br>Frais remboursés par année</a>
                     </div>
                 </div>
             </div>

@@ -577,5 +577,41 @@ class PdoGsb
         $requetePrepare->bindParam(':moisPrecedent', $moisPrecedent, PDO::PARAM_STR);
         $requetePrepare->execute();
     }
+    
+    /**
+     * Fonction qui retourne le montante total des frais des fiches remboursees de l'annee passee en parametre
+     * 
+     * @param date $annee
+     * return float
+     */
+    public function getTotalRemboursement($annee){
+        $requetePrepare = PdoGsb::$monPdo->prepare(
+            'SELECT SUM(fichefrais.montantvalide) FROM fichefrais '
+            . 'WHERE fichefrais.idetat = "RB" '
+            . 'AND fichefrais.annee = :uneAnnee'
+        );
+        $requetePrepare->bindParam(':uneAnnee', $annee, PDO::PARAM_INT);
+        $requetePrepare->execute();
+        $total = $requetePrepare->fetch();
+        return $total;
+    }
+    
+    /**
+     * Fonction qui retourne le nombre de fiches de frais remboursees de l'annee passee en parametre
+     * 
+     * @param date $annee
+     * return int
+     */
+    public function getNombreFichesRB($annee){
+        $requetePrepare = PdoGsb::$monPdo->prepare(
+            'SELECT COUNT(*) FROM fichefrais '
+            . 'WHERE fichefrais.idetat = "RB" '
+            . 'AND fichefrais.annee = :uneAnnee'
+        );
+        $requetePrepare->bindParam(':uneAnnee', $annee, PDO::PARAM_INT);
+        $requetePrepare->execute();
+        $total = $requetePrepare->fetch();
+        return $total;
+    }
 }
 

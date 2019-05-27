@@ -31,6 +31,9 @@ case 'etatFrais':
 case 'validerFrais':
     include 'controleurs/c_validerFrais.php';
     break;
+case 'remboursementFrais':
+    include 'controleurs/c_fraisRembourses.php';
+    break;
 case 'deconnexion':
     include 'controleurs/c_deconnexion.php';
     break;
