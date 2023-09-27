@@ -1,2 +1,2 @@
 # GSB-Applifrais
-gérer une interface visiteur et comptable
+Manage a interface of visitors and accountant
